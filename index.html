@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src https: data: 'self'; block-all-mixed-content;">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مولد القافية العربية (Qafiya Generator)</title>
@@ -182,8 +184,7 @@
         
         // --- Core LLM Configuration ---
         const MODEL_NAME = "gemini-2.5-flash-preview-09-2025";
-        const API_URL_BASE = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent`;
-        const apiKey = "AIzaSyDAoo2a3qSltWO4yIFik97SfEthb_J14u8"; // Canvas environment will provide the key
+        const API_URL_BASE = "https://old-pond-c01d.mufaddalbadr.workers.dev";
 
         /**
          * Converts the input text into a clean HTML list item.
@@ -236,7 +237,7 @@
 
             while (currentRetry < maxRetries) {
                 try {
-                    const response = await fetch(`${API_URL_BASE}?key=${apiKey}`, {
+                    const response = await fetch(API_URL_BASE, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
@@ -366,7 +367,7 @@
             };
 
             try {
-                const response = await fetch(`${API_URL_BASE}?key=${apiKey}`, {
+                const response = await fetch(API_URL_BASE, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
